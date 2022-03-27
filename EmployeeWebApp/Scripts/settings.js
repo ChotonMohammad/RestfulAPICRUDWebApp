@@ -44,7 +44,7 @@ function load_menu_item_for_dropdown() {
 }
 
 
-// load employee table
+// load setting table
 load_setting_table(1);
 function load_setting_table(pageNo) {
 
@@ -91,7 +91,7 @@ function load_setting_table(pageNo) {
 
 
 
-// Shows data on employee table
+// Shows data on setting table
 function show_setting_list(resp) {
     $("#setting_table_tbody").empty();
 
@@ -141,7 +141,7 @@ function show_setting_list(resp) {
     });
 }
 
-//Start add employee add event listener
+//Start add setting add event listener
 
 $("#add_setting_button").on("click", function () {
     $("#setting_add_modal").modal("show");
@@ -150,12 +150,12 @@ $("#add_setting_button").on("click", function () {
 
 });
 
-//Start add employee event listener
+//Start add setting event listener
 
 
 
 
-//save new employee
+//save new setting
 
 $("#setting_add_modal_form").on("submit", function (e) {
     e.preventDefault();
@@ -205,7 +205,7 @@ $("#setting_add_modal_form").on("submit", function (e) {
 
 
 
-//update employee
+//update setting
 $("#setting_edit_modal_form").on("submit", function (e) {
     e.preventDefault();
 
@@ -245,49 +245,6 @@ $("#setting_edit_modal_form").on("submit", function (e) {
     });
 });
 
-//delete employee
-$("#delete_setting_modal_form").on("submit", function (e) {
-    e.preventDefault();
-
-    //json = {
-    //    employeeId: $("#delete_setting_setting_id_hidden").data("employeeId"),
-    //};
-
-    let employeeId = $("#delete_setting_setting_id_hidden").data("employeeId");
-
-
-    $.ajax({
-        url: '/api/DeleteEmployee/' + employeeId,
-        type: "Delete",
-        // Fetch the stored token from localStorage and set in the header
-        headers: { "Authorization": localStorage.getItem('token') },
-        contentType: "application/json; charset-utf-8",
-        //data: JSON.stringify(json),
-        success: function (resp) {
-
-            if (resp.error) {
-                toastr.error(resp.message);
-            }
-            else {
-                $("#delete_setting_modal").modal("hide");
-                toastr.success(resp.message);
-                load_setting_table($("#setting_pagination_page_no").text());
-
-
-            }
-        },
-        beforeSend: function () {
-            $("#setting_loading_gif").show();
-        },
-        complete: function () {
-            $("#setting_loading_gif").hide();
-        }
-    });
-});
-
-
-
-
 //filter
 
 $("#setting_filter_button").on("click", function (e) {
@@ -295,7 +252,7 @@ $("#setting_filter_button").on("click", function (e) {
     load_setting_table(1);
 });
 
-//employee pagination
+//setting pagination
 
 
 $("#setting_previous_list_click").on("click", function () {
@@ -356,7 +313,7 @@ $("#setting_pagination_page_no_input").keydown(function (e) {
 /*
 ///////////////////////////////////////
 
-        EMPLOYEE SECTION END
+        SETTINGS SECTION END
 
 ///////////////////////////////////////
 */

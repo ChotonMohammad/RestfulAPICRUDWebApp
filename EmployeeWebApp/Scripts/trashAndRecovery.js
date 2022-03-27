@@ -151,7 +151,7 @@ function show_employee_list(resp) {
 
         var icondiv = $("<ul>").attr("class", "d-flex justify-content-center").appendTo(iconcell);
 
-        var deleteIcon = $("<i>").attr({
+        var restoreIcon = $("<i>").attr({
             "class": "fa fa-trash text-white bg-danger rounded-circle shadow ml-2",
             "style": "font-size: 18px; padding: 10px; cursor: pointer; border: 2px solid white;",
             "title": "Recover"
@@ -160,10 +160,10 @@ function show_employee_list(resp) {
         $("<tr>").append(slnocell, employeeName, gender, department, city, iconcell).appendTo("#employee_table_tbody");
 
         (function ($) {
-            deleteIcon.on("click", function (e) {
+            restoreIcon.on("click", function (e) {
                 e.preventDefault();
-                $("#delete_employee_modal").modal("show");
-                $("#delete_employee_employee_id_hidden").data("employeeId", value.EmployeeId);
+                $("#restore_employee_modal").modal("show");
+                $("#restore_employee_employee_id_hidden").data("employeeId", value.EmployeeId);
             });
 
         })(jQuery);
@@ -172,15 +172,15 @@ function show_employee_list(resp) {
 }
 
 
-//delete employee
-$("#delete_employee_modal_form").on("submit", function (e) {
+//restore employee
+$("#restore_employee_modal_form").on("submit", function (e) {
     e.preventDefault();
 
     //json = {
-    //    employeeId: $("#delete_employee_employee_id_hidden").data("employeeId"),
+    //    employeeId: $("#restore_employee_employee_id_hidden").data("employeeId"),
     //};
 
-    let employeeId = $("#delete_employee_employee_id_hidden").data("employeeId");
+    let employeeId = $("#restore_employee_employee_id_hidden").data("employeeId");
 
 
     $.ajax({
@@ -196,7 +196,7 @@ $("#delete_employee_modal_form").on("submit", function (e) {
                 toastr.error(resp.message);
             }
             else {
-                $("#delete_employee_modal").modal("hide");
+                $("#restore_employee_modal").modal("hide");
                 toastr.success(resp.message);
                 load_employee_table($("#employee_pagination_page_no").text());
 
