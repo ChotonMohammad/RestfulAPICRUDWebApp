@@ -1,0 +1,221 @@
+﻿
+@{
+    //ViewBag.Title = "SignIn";
+    Layout = null;
+}
+
+
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ADMIN | SIGN IN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <style>
+        @@import url('https://fonts.maateen.me/charukola-ultra-light/font.css');
+
+        /***************Bangla font class*****************/
+
+
+        .charukola-font {
+            font-family: 'CharukolaUltraLight', Arial, sans-serif !important;
+        }
+    </style>
+    <!--charukola font-->
+    <link href="https://fonts.maateen.me/charukola-ultra-light/font.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="~/Content/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/slicknav.min.css">
+
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+
+    <link rel="stylesheet" href="~/Content/assets/css/typography.css">
+    <link rel="stylesheet" href="~/Content/assets/css/default-css.css">
+    <link rel="stylesheet" href="~/Content/assets/css/my-styles.css">
+    <link rel="stylesheet" href="~/Content/assets/css/responsive.css">
+    <!-- modernizr css -->
+    <script src="~/Content/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link href="~/Content/assets/css/toastr.min.css" rel="stylesheet" />
+
+
+    <style>
+
+        .charu-chandan-font {
+            font-family: 'CharuChandan3D', Arial, sans-serif !important;
+        }
+
+        }
+
+        .toast-close-button {
+            right: -.6em;
+            top: -.6em !important;
+        }
+
+        .toast-message {
+            font-family: 'Poppins', sans-serif !important;
+            text-decoration: none !important;
+            color: #fff !important;
+            font-size: 14px !important;
+        }
+
+        .toast-title {
+            font-family: 'Poppins', sans-serif !important;
+            text-decoration: none !important;
+            color: #fff !important;
+            text-transform: uppercase !important;
+            font-size: 14px !important;
+        }
+
+        .shadow {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: JosefinSans-Bold;
+            background: rgb(138,153,130);
+            background: linear-gradient(90deg, rgba(138,153,130,1) 0%, rgb(164, 172, 148) 40%, rgb(164, 172, 148) 60%, rgb(182, 186, 163) 100%);
+        }
+
+        .loader {
+            border: 10px solid #f3f3f3 !important;
+            border-radius: 50%;
+            border-top: 10px solid green !important;
+            width: 90px;
+            height: 90px;
+            -webkit-animation: spin 1.5s linear infinite; /* Safari */
+            animation: spin 1.5s linear infinite;
+            margin: 0;
+            background: red;
+            position: absolute;
+            top: 50%;
+            left: 47%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+        /* Safari */
+        @@-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rc-anchor-invisible-text {
+            background: #28a745 !important;
+        }
+    </style>
+</head>
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <!-- preloader area end -->
+    <!-- login area start -->
+    <div class="login-area login">
+        <div class="container">
+            <div class="login-box ptb--100">
+                <form class="shadow" style=" width:420px;border-radius: 25px; border:0px;" id="sign_in_form_submit" method="post">
+                    <div class="login-form-head mb-4" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
+                        <h4 class="charukola-font" style="font-size:20px">Admin <br /> Sign In</h4>
+                    </div>
+                    <div class="login-form-body">
+                        <div class="form-gp focused">
+                            <label for="head_admin_login_username">Username</label>
+                            <input type="text" id="head_admin_login_username" value="admin" required autofocus>
+                            <i class="ti-user"></i>
+                        </div>
+                        <div class="form-gp">
+                            <label for="head_admin_login_password">Password</label>
+                            <input type="password" id="head_admin_login_password" value="admin" required>
+                            <i class="ti-lock"></i>
+                        </div>
+                        <div class="row mb-4 rmber-area">
+                            <div class="col-12 text-right">
+                                <a href="#">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="submit-btn-area mb-4" id="login_submit_div">
+                            <button type="submit" id="login_submit_button">LOG IN <i id="login_submit_button_icon" class="ti-arrow-right"></i></button>
+                            @*<a href="/HeadAdmin/HeadSettings/Settings" type="submit" id="login_submit_button">Login <i class="ti-arrow-right"></i></a>*@
+
+                        </div>
+                        @*<div class="form-footer text-center mt-5">
+                                <p class="text-muted">Don't have an account? <a href="register.html">Sign up</a></p>
+                            </div>*@
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- login area end -->
+    <!-- jquery latest version -->
+    <script src="~/Content/assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="~/Content/assets/js/popper.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/owl.carousel.min.js"></script>
+    <script src="~/Content/assets/js/metisMenu.min.js"></script>
+    <script src="~/Content/assets/js/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- others plugins -->
+    <script src="~/Content/assets/js/plugins.js"></script>
+    <script src="~/Content/assets/js/scripts.js"></script>
+
+    <script src="~/Content/assets/js/toastr.min.js"></script>
+    <script src="~/Scripts/admin_sign_in.js"></script>
+    <script>
+
+
+
+        //$("#login_submit_button").empty();
+
+        //var element = document.getElementById("login_submit_button");
+        //element.style.background = "#28a745";
+        //$("#login_submit_button").append('<i class="fa fa-spinner fa-spin" style="font-size:20px"></i>');
+    </script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+</body>
+</html>
+
+

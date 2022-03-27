@@ -1,0 +1,161 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @@import url('https://fonts.maateen.me/charukola-ultra-light/font.css');
+
+        /***************Bangla font class*****************/
+
+
+        .charukola-font {
+            font-family: 'CharukolaUltraLight', Arial, sans-serif !important;
+        }
+    </style>
+    <!--charukola font-->
+    <link href="https://fonts.maateen.me/charukola-ultra-light/font.css" rel="stylesheet">
+    @*<link rel="shortcut icon" type="image/png" href="~/Content/assets/img/logo/edc_thoqbah_logo.jpg">*@
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="~/Content/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="~/Content/assets/css/typography.css">
+    <link rel="stylesheet" href="~/Content/assets/css/default-css.css">
+    <link rel="stylesheet" href="~/Content/assets/css/my-styles.css">
+    <link rel="stylesheet" href="~/Content/assets/css/responsive.css">
+    <link href="~/Content/assets/css/toastr.min.css" rel="stylesheet" />
+    <!-- modernizr css -->
+    <script src="~/Content/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+        .form-control:focus {
+            box-shadow: aliceblue !important;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    @RenderSection("styles", required: false)
+</head>
+
+<body>
+    <!-- page container area start -->
+    <div class="page-container">
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu sidebar">
+            <div class="sidebar-header">
+                <div class="sidenav-header-inner text-center">
+                    <h4 class="h5 mt-1 charukola-font" style="color:white;font-size:23px"><b>Singularity</b></h4>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li id="employee_index">
+                                <a href="/Home/Employees" aria-expanded="true"><i class="ti-settings"></i><span>Employees</span></a>
+                            </li>
+                            <li id="employee_settings">
+                                <a href="/Home/Settings" aria-expanded="true"><i class="ti-settings"></i><span>Settings</span></a>
+                            </li>
+                            <li id="employee_tr">
+                                <a href="/Home/TrashAndRecovery" aria-expanded="true"><i class="ti-settings"></i><span>Trash &Aacute; Recovery</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar menu area end -->
+        <!-- main content area start -->
+        <div class="main-content">
+            <!-- header area start -->
+            <div class="header-area site-header">
+                <div class="row align-items-center">
+                    <!-- nav and search button -->
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <!-- profile info & task notification -->
+                    <div class="col-md-6 col-sm-6 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                            <li class="dropdown">
+                                <div class="btn-group dropleft">
+                                    <a class="btn btn-success head-name">Choton</a>
+                                    <button type="button" class="btn btn-success" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-angle-down"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/">Logout</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- header area end -->
+            <!--Page Content Here-->
+            @RenderBody()
+        </div>
+        <!-- main content area end -->
+        <!-- footer area start-->
+        <footer>
+            <div class="footer-area">
+                <p>© Copyright 2020. All right reserved.</p>
+            </div>
+        </footer>
+        <!-- footer area end-->
+    </div>
+    <!-- page container area end -->
+    <!-- partial offset activity-->
+    <!-- jquery latest version -->
+    <script src="~/Content/assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="~/Content/assets/js/popper.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/owl.carousel.min.js"></script>
+    <script src="~/Content/assets/js/metisMenu.min.js"></script>
+    <script src="~/Content/assets/js/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- others plugins -->
+    <script src="~/Content/assets/js/plugins.js"></script>
+    <script src="~/Content/assets/js/scripts.js"></script>
+    <script src="~/Content/assets/js/toastr.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <script>
+
+    </script>
+
+    <script>
+        // WRITE THE VALIDATION SCRIPT.
+        function isNumber(evt) {
+            var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+            if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+                return false;
+
+            return true;
+        }
+    </script>
+</body>
+
+</html>

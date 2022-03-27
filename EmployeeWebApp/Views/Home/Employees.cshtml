@@ -1,0 +1,281 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+
+}
+
+
+@*///////////////////////////////
+
+    <!-- Employee area start -->
+
+    ////////////////////////////////*@
+
+<!-- Employee table start -->
+
+<div class="main-content-inner">
+    <div class="card mt-4">
+        <div class="card shadow-tbl">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <h4 class="header-title">Employees</h4>
+                    </div>
+                    <div class="col-6">
+
+                        <!-- Add employee button trigger modal -->
+                        <button type="button" class="btn btn-success mb-3 p-2" style="float:right;font-size:15px" data-toggle="modal" id="add_employee_button"><i class="fa fa-plus"></i> Add</button>
+
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <form class="needs-validation" novalidate="" method="post">
+                        <div class="form-row">
+
+                            <div class="col-md-4 mb-3">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Limit</span>
+                                    </div>
+                                    <select class="form-control" id="employee_limit_filter" name="employee_limit_filter">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Department</span>
+                                    </div>
+                                    <select class="form-control" id="employee_department_filter" name="employee_department_filter">
+                                        <option value="-1">All..</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">City</span>
+                                    </div>
+                                    <select class="form-control" id="employee_city_filter" name="employee_city_filter">
+                                        <option value="-1">All..</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <button class="btn btn-success" type="button" id="employee_filter_button">Filter</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="single-table">
+                    <div class="table-responsive">
+                        <table class="table table-hover progress-table text-center mb-4" id="employee_table">
+                            <thead class="text-uppercase">
+                                <tr>
+                                    <th scope="col">SL NO</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Department</th>
+                                    <th scope="col">City</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employee_table_tbody"></tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-success" role="status" id="employee_loading_gif">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <!--Employee Pagination Start-->
+                    <div class="pagination_area pull-right mt-2">
+                        <ul>
+                            <li class="cursor-pointer"><a id="employee_previous_list_click"><i class="fa fa-chevron-left"></i></a></li>
+                            <li class="cursor-pointer"><a class="ml-4 mr-4" id="employee_pagination_page_no">1</a></li>
+
+                            <li><input class="ml-4 mr-4 form-control display-none " id="employee_pagination_page_no_input" style="width:50px" onkeypress="javascript:return isNumber(event)" /></li>
+                            <li class="cursor-pointer"><a id="employee_next_list_click"><i class="fa fa-chevron-right cursor-pointer"></i></a></li>
+                        </ul>
+                    </div>
+                    <!--Employee Pagination End-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Employee table end -->
+<!-- Add Employee modal start -->
+<div class="modal fade" id="employee_add_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="employee_add_modal_form" name="employee_add_modal_form" novalidate class="needs-validation" method="post">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title w-100" style="text-align:center!important">Add Employee</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add employee form start -->
+                    <div class="form-group">
+                        <input type="text" class="form-control input-rounded" id="add_employee_fullname_input" name="add_employee_fullname_input" placeholder="Enter user's fullname" required>
+                        <small id="add_employee_fullname_input_help" class="invalid-feedback">Please enter a employee's fullname.</small>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" checked id="add_employee_gender_radio_male" name="add_employee_gender_radio" value="1" class="custom-control-input">
+                            <label class="custom-control-label" for="add_employee_gender_radio_male">Male</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="add_employee_gender_radio_female" name="add_employee_gender_radio" value="2" class="custom-control-input">
+                            <label class="custom-control-label" for="add_employee_gender_radio_female">Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control input-rounded" style="cursor: pointer;" id="add_employee_department_select" name="add_employee_department_select" required="">
+                            <option value="">Select Department</option>
+                        </select>
+                        <small id="add_employee_department_select_help" class="invalid-feedback">Please select a department name.</small>
+
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control input-rounded" style="cursor: pointer;" id="add_employee_city_select" name="add_employee_city_select" required="">
+                            <option value="">Select</option>
+                        </select>
+                        <small id="add_employee_city_select_help" class="invalid-feedback">Please select a city.</small>
+
+                    </div>
+                    <!-- Add Employee form end -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" id="add_employee_button">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Add employee modal end -->
+<!-- Edit employee modal start -->
+<div class="modal fade" id="employee_edit_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="employee_edit_modal_form" name="employee_edit_modal_form" novalidate class="needs-validation" method="post">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title w-100" style="text-align:center!important">Edit Employee</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add employee form start -->
+                    <div class="form-group">
+                        <input type="text" class="form-control input-rounded" id="edit_employee_fullname_input" name="edit_employee_fullname_input" placeholder="Enter user's fullname" required>
+                        <small id="edit_employee_fullname_input_help" class="invalid-feedback">Please enter a employee's fullname.</small>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="edit_employee_gender_radio_male" name="edit_employee_gender_radio" value="1" class="custom-control-input">
+                            <label class="custom-control-label" for="edit_employee_gender_radio_male">Male</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="edit_employee_gender_radio_female" name="edit_employee_gender_radio" value="2" class="custom-control-input">
+                            <label class="custom-control-label" for="edit_employee_gender_radio_female">Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control input-rounded" style="cursor: pointer;" id="edit_employee_department_select" name="edit_employee_department_select" required="">
+                            <option value="">Select Department</option>
+                        </select>
+                        <small id="edit_employee_department_select_help" class="invalid-feedback">Please select a department name.</small>
+
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control input-rounded" style="cursor: pointer;" id="edit_employee_city_select" name="edit_employee_city_select" required="">
+                            <option value="">Select</option>
+                        </select>
+                        <small id="edit_employee_city_select_help" class="invalid-feedback">Please select a city.</small>
+
+                    </div>
+                    <!-- Add employee form end -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" id="edit_employee_button">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Edit employee modal end -->
+<!-- Delete employee modal start -->
+<div class="modal fade bd-example-modal-sm" id="delete_employee_modal">
+    <div class="modal-dialog modal-sm">
+        <div class="additional-content modal-content">
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+
+                <h5 class="alert-heading text-center mb-3 mt-3">Are you sure?</h5>
+
+                <p class="mb-3 text-center">Do you really want to delete these records? This process cannot be undone.</p>
+                <form id="delete_employee_modal_form" name="delete_employee_modal_form" method="post">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="delete_employee_employee_id_hidden" name="delete_employee_employee_id_hidden" onkeypress="javascript:return isNumber(event)">
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-rounded btn-secondary mb-3" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                        <button type="submit" class="btn btn-rounded btn-danger mb-3" id="delete_employee_button"><i class="fa fa-trash"></i> Delete</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete emplyee modal end -->
+@*///////////////////////////////
+
+    <!-- Employeearea end -->
+
+    ////////////////////////////////*@
+
+
+
+@section scripts{
+
+    <script>
+        $("#employee_index").addClass("active");
+
+    </script>
+
+    <script src="~/Scripts/employee.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+
+}

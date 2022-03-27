@@ -1,0 +1,321 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+
+}
+
+
+@*///////////////////////////////
+
+    <!-- Setting area start -->
+
+    ////////////////////////////////*@
+
+<!-- Setting table start -->
+
+<div class="main-content-inner">
+    <div class="card mt-4">
+        <div class="card shadow-tbl">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <h4 class="header-title">Settings</h4>
+                    </div>
+                    <div class="col-6">
+
+                        <!-- Add Setting button trigger modal -->
+                        <button type="button" class="btn btn-success mb-3 p-2" style="float:right;font-size:15px" data-toggle="modal" id="add_setting_button"><i class="fa fa-plus"></i> Add</button>
+
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <form class="needs-validation" novalidate="" method="post">
+                        <div class="form-row">
+
+                            <div class="col-md-4 mb-3">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Limit</span>
+                                    </div>
+                                    <select class="form-control" id="setting_limit_filter" name="setting_limit_filter">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Menu Item</span>
+                                    </div>
+                                    <select class="form-control" id="setting_menu_item_filter" name="setting_menu_item_filter">
+                                        <option value="-1">All..</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <button class="btn btn-success" type="button" id="setting_filter_button">Filter</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="single-table">
+                    <div class="table-responsive">
+                        <table class="table table-hover progress-table text-center mb-4" id="setting_table">
+                            <thead class="text-uppercase">
+                                <tr>
+                                    <th scope="col">SL NO</th>
+                                    <th scope="col">Item/Service Name</th>
+                                    <th scope="col">View Status</th>
+                                    <th scope="col">Create Status</th>
+                                    <th scope="col">Update Status</th>
+                                    <th scope="col">Delete Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="setting_table_tbody"></tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-success" role="status" id="setting_loading_gif">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <!--Setting Pagination Start-->
+                    <div class="pagination_area pull-right mt-2">
+                        <ul>
+                            <li class="cursor-pointer"><a id="setting_previous_list_click"><i class="fa fa-chevron-left"></i></a></li>
+                            <li class="cursor-pointer"><a class="ml-4 mr-4" id="setting_pagination_page_no">1</a></li>
+
+                            <li><input class="ml-4 mr-4 form-control display-none " id="setting_pagination_page_no_input" style="width:50px" onkeypress="javascript:return isNumber(event)" /></li>
+                            <li class="cursor-pointer"><a id="setting_next_list_click"><i class="fa fa-chevron-right cursor-pointer"></i></a></li>
+                        </ul>
+                    </div>
+                    <!--Setting Pagination End-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Setting table end -->
+<!-- Add Setting modal start -->
+<div class="modal fade" id="setting_add_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="setting_add_modal_form" name="setting_add_modal_form" novalidate class="needs-validation" method="post">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title w-100" style="text-align:center!important">Add Setting</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add Setting form start -->
+                    <div class="form-group">
+                        <select class="form-control input-rounded" style="cursor: pointer;" id="add_setting_menu_item_select" name="add_setting_menu_item_select" required="">
+                            <option value="">Select Menu Item</option>
+                            <option value="1">Employee</option>
+                        </select>
+                        <small id="add_setting_menu_item_select_help" class="invalid-feedback">Please select a department name.</small>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-check-label" for="add_setting_view_checked">View Enable Status</label>
+
+                            </div>
+                            <div class="col-6">
+                                <input id="add_setting_view_checked" type="checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-check-label" for="add_setting_create_checked">Create Enable Status</label>
+
+                            </div>
+                            <div class="col-6">
+                                <input id="add_setting_create_checked" type="checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-check-label" for="add_setting_update_checked">Update Enable Status</label>
+
+                            </div>
+                            <div class="col-6">
+                                <input id="add_setting_update_checked" type="checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-check-label" for="add_setting_delete_checked">Delete Enable Status</label>
+
+                            </div>
+                            <div class="col-6">
+                                <input id="add_setting_delete_checked" type="checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Setting form end -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" id="add_setting_button">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Add Setting modal end -->
+<!-- Edit Setting modal start -->
+<div class="modal fade" id="setting_edit_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="setting_edit_modal_form" name="setting_edit_modal_form" novalidate class="needs-validation" method="post">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title w-100" style="text-align:center!important">Edit Setting</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add Setting form start -->
+                    <div class="form-group">
+                        <select class="form-control input-rounded" style="cursor: pointer;" id="edit_setting_menu_item_select" name="edit_setting_menu_item_select" required="">
+                            <option value="">Select Menu Item</option>
+                            <option value="1">Employee</option>
+                        </select>
+                        <small id="edit_setting_menu_item_select_help" class="invalid-feedback">Please select a department name.</small>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-check-label" for="edit_setting_view_checked">View Enable Status</label>
+
+                            </div>
+                            <div class="col-6">
+                                <input id="edit_setting_view_checked" type="checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-check-label" for="edit_setting_create_checked">Create Enable Status</label>
+
+                            </div>
+                            <div class="col-6">
+                                <input id="edit_setting_create_checked" type="checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-check-label" for="edit_setting_update_checked">Update Enable Status</label>
+
+                            </div>
+                            <div class="col-6">
+                                <input id="edit_setting_update_checked" type="checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-check-label" for="edit_setting_delete_checked">Delete Enable Status</label>
+
+                            </div>
+                            <div class="col-6">
+                                <input id="edit_setting_delete_checked" type="checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Setting form end -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-rounded" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" id="edit_setting_button">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Edit Setting modal end -->
+<!-- Delete Setting modal start -->
+<div class="modal fade bd-example-modal-sm" id="delete_setting_modal">
+    <div class="modal-dialog modal-sm">
+        <div class="additional-content modal-content">
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+
+                <h5 class="alert-heading text-center mb-3 mt-3">Are you sure?</h5>
+
+                <p class="mb-3 text-center">Do you really want to delete these records? This process cannot be undone.</p>
+                <form id="delete_setting_modal_form" name="delete_setting_modal_form" method="post">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="delete_setting_setting_id_hidden" name="delete_setting_setting_id_hidden" onkeypress="javascript:return isNumber(event)">
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-rounded btn-secondary mb-3" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                        <button type="submit" class="btn btn-rounded btn-danger mb-3" id="delete_setting_button"><i class="fa fa-trash"></i> Delete</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete emplyee modal end -->
+@*///////////////////////////////
+
+    <!-- Settingarea end -->
+
+    ////////////////////////////////*@
+
+
+
+@section scripts{
+
+    <script>
+        $("#setting_index").addClass("active");
+
+    </script>
+
+    <script src="~/Scripts/settings.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+
+}
